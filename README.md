@@ -1,6 +1,7 @@
 # Multi-Cloud Apps with GraalVM - Up and Running
 
-This workshop is for developers looking to understand better how to **build size-optimized cloud native Java applications** using [GraalVM Native Image](https://www.graalvm.org/jdk21/reference-manual/native-image/). You are going to discover ways to minimize application footprint by taking advantage of different Native Image linking options and packaging into various base containers. 
+This workshop is for developers looking to understand better how to **build size-optimized cloud native Java applications** using [GraalVM Native Image](https://www.graalvm.org/jdk24/reference-manual/native-image/).
+You are going to discover ways to minimize application footprint by taking advantage of different Native Image linking options and packaging into various base containers. 
 
 For the demo part, you will run a Spring Boot web server application, hosting the GraalVM website. 
 Spring Boot 3 has integrated support for GraalVM Native Image, making it easier to set up and configure a project.
@@ -22,9 +23,9 @@ In this workshop you will:
 * x86 Linux
 * `musl` toolchain
 * Container runtime such as [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/) or [Docker](https://www.docker.com/gettingstarted/) installed and running
-* [GraalVM for JDK 23](https://www.graalvm.org/downloads/) or later. We recommend using [SDKMAN!](https://sdkman.io/). (For other download options, see [GraalVM Downloads](https://www.graalvm.org/downloads/).)
+* [GraalVM for JDK 24 Early Access build](https://www.graalvm.org/downloads/) or later. We recommend using [SDKMAN!](https://sdkman.io/). (For other download options, see [GraalVM Downloads](https://www.graalvm.org/downloads/).)
     ```bash
-    sdk install java 23-graal
+    sdk install java 24.ea.30-graal
     ```
 
 ## Setup
@@ -94,7 +95,7 @@ RUN ./mvnw dependency:build-classpath -Dmdep.outputFile=cp.txt
 ```
 Then, Docker runs the `jdeps` command with the classpath to check required modules for this Spring Boot application:
 ```bash
-RUN jdeps --ignore-missing-deps -q  --recursive --multi-release 23 --print-module-deps --class-path $(cat cp.txt) target/webserver-0.0.1-SNAPSHOT.jar
+RUN jdeps --ignore-missing-deps -q  --recursive --multi-release 24 --print-module-deps --class-path $(cat cp.txt) target/webserver-0.0.1-SNAPSHOT.jar
 ```
 Finally, Docker runs `jlink` to create a custom runtime in the specified output directory _jlink-jre_.
 The `ENTRYPOINT` for the application would be `java` from the custom runtime.
@@ -581,5 +582,5 @@ Sorted by size, it is clear that the fully static native image, compressed with 
 - ["Distroless" Container Images](https://github.com/GoogleContainerTools/distroless)
 - [Paketo Buildpacks](https://paketo.io/docs/)
 - [Native Build Tools](https://graalvm.github.io/native-build-tools/latest/index.html)
-- [Static and Mostly Static Images](https://www.graalvm.org/jdk23/reference-manual/native-image/guides/build-static-executables/)
+- [Static and Mostly Static Images](https://www.graalvm.org/jdk24/reference-manual/native-image/guides/build-static-executables/)
 - [Tiny Java Containers by Shaun Smith at DevoxxUK 2022](https://youtu.be/6wYrAtngIVo)
