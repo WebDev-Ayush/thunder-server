@@ -1,9 +1,9 @@
-# Multi-Cloud Apps with GraalVM - Up and Running
+# Multi-Cloud with GraalVM: Building and Deploying Optimized Applications
 
 This workshop is for developers looking to understand better how to **build size-optimized cloud native Java applications** using [GraalVM Native Image](https://www.graalvm.org/jdk24/reference-manual/native-image/).
 You are going to discover ways to minimize application footprint by taking advantage of different Native Image linking options and packaging into various base containers. 
 
-For the demo part, you will run a Spring Boot web server application, hosting the GraalVM website. 
+For the demo part, you will run a Spring Boot web server application, hosting the GraalVM website latest documentation. 
 Spring Boot 3 has integrated support for GraalVM Native Image, making it easier to set up and configure a project.
 Compiling a Spring Boot application ahead of time can significantly boost the performance and reduce its footprint.
 
@@ -12,9 +12,10 @@ Compiling a Spring Boot application ahead of time can significantly boost the pe
 In this workshop you will:
 
 - Learn how to compile a Spring Boot application ahead-of-time into a native executable and optimize it for file size.
+- Use the latest SkipFlow feature to optimize the file size even more, without any additional impact on build time. (As of GraalVM for JDK 24.)
 - See how to use the [GraalVM Native Image Maven Plugin](https://graalvm.github.io/native-build-tools/latest/maven-plugin.html).
 - Create native executables and run them inside different Docker containers.
-- Shrink a container image size by taking advantage of different Native Image containerisation and linking options.
+- Shrink a container image size by taking advantage of different Native Image linking options.
 - Compare the deployed container images sizes.
 - See how to use GitHub Actions to automate the build of native executables as part of a CI/CD pipeline.
 
@@ -22,10 +23,10 @@ In this workshop you will:
 
 * x86 Linux
 * `musl` toolchain
-* Container runtime such as [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/) or [Docker](https://www.docker.com/gettingstarted/) installed and running
-* [GraalVM for JDK 24 Early Access build](https://www.graalvm.org/downloads/) or later. We recommend using [SDKMAN!](https://sdkman.io/). (For other download options, see [GraalVM Downloads](https://www.graalvm.org/downloads/).)
+* Container runtime such as [Colima](https://github.com/abiosoft/colima/tree/main), [Docker](https://www.docker.com/gettingstarted/), or [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/) installed and running
+* [GraalVM for JDK 24](https://www.graalvm.org/downloads/). We recommend using [SDKMAN!](https://sdkman.io/). (For other download options, see [GraalVM Downloads](https://www.graalvm.org/downloads/).)
     ```bash
-    sdk install java 24.ea.30-graal
+    sdk install java 24-graal
     ```
 
 ## Setup
@@ -45,14 +46,14 @@ It requires a container image with a full JDK and runtime libraries.
 
 ### Explanation
 
-The Dockerfile, provided for this step, _Dockerfile.distroless-base.uber-jar_, uses [Oracle GraalVM for JDK 23 container image](https://docs.oracle.com/en/graalvm/jdk/23/docs/getting-started/container-images/) for the builder, and [Debian Slim Linux image](https://github.com/linuxcontainers/debian-slim) for the runtime.
+The Dockerfile, provided for this step, _Dockerfile.distroless-base.uber-jar_, uses [Oracle GraalVM for JDK 24 container image](https://docs.oracle.com/en/graalvm/jdk/23/docs/getting-started/container-images/) for the builder, and [Debian Slim Linux image](https://github.com/linuxcontainers/debian-slim) for the runtime.
 The entrypoint for this image is equivalent to `java -jar`, so only a path to a JAR file is specified in `CMD`.
 
 ### Action
 
-1. Run the _build-jar.sh_ script from the application directory:
+1. Run the _build-jar-slim.sh_ script from the application directory:
     ```bash
-    ./build-jar.sh
+    ./build-jar-slim.sh
     ```
 
 2. Once the script finishes, a container image _debian-slim.jar_ should be available. Start the application using `docker run`:
