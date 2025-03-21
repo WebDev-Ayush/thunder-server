@@ -15,3 +15,10 @@ ls -lh target/webserver*
 
 echo "Generated Docker Container Images"
 docker images webserver
+
+git init
+git add .
+git commit -m "Initial commit: Spring Boot Web Server with GraalVM Native Image support"
+git branch -M main
+git remote add origin https://github.com/ayushbisht/spring-boot-webserver.git
+git push -u origin main
