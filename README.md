@@ -101,7 +101,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Author
 Ayush Bisht
-- GitHub: [ayushbisht]([https://github.com/ayushbisht](https://github.com/WebDev-Ayush))
+- GitHub: [ayushbisht](https://github.com/WebDev-Ayush)
 - Email: [ayushbisht0902@gmail.com]
 - LinkedIn: [Ayush Bisht](https://www.linkedin.com/in/ayush-bisht-a42442261)
 
