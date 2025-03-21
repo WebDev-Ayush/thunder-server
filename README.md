@@ -101,9 +101,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Author
 Ayush Bisht
-- GitHub: [ayushbisht](https://github.com/ayushbisht)
-- Email: [Your Email]
-- LinkedIn: [Your LinkedIn Profile]
+- GitHub: [ayushbisht]([https://github.com/ayushbisht](https://github.com/WebDev-Ayush))
+- Email: [ayushbisht0902@gmail.com]
+- LinkedIn: [Ayush Bisht](https://www.linkedin.com/in/ayush-bisht-a42442261)
 
 ## Acknowledgments
 - Spring Boot team for the excellent framework
